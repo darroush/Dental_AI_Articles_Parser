@@ -4,32 +4,15 @@ from tqdm import tqdm
 from helper import *
 
 
-# set E-mail
+# TODO:  set E-mail
 Entrez.email = "mostafadesoki86@gmail.com"
 
-# set time interval
+# TODO:  set time interval
 time_interval = '2024/09/01:2024/09/30'
 
-# set research query
+# TODO:  modify research query if needed
 search_query = f"""((("Artificial Intelligence"[Mesh] OR "Artificial Intelligence"[tw] OR "Machine Learning"[tw] OR "Convolutional neural network*"[tw] OR "Deep Learning"[tw] AND ({time_interval}[pdat])) AND 
                 ("Dentistry"[Mesh] OR Dentistry[tw] OR Dental[tw] AND ({time_interval}[pdat])) NOT "systematic review"[Filter]) NOT "review"[Filter])"""
-
-# exclude Q3 and Q4 journals
-journals_blacklist = ["AMIA ... Annual Symposium proceedings. AMIA Symposium",
-"Bioinformation","Compendium of continuing education in dentistry (Jamesburg, N.J. : 1995)",
-"Cureus",
-"Journal of the Indian Society of Pedodontics and Preventive Dentistry",
-"Journal of veterinary dentistry",
-"Journal of visualized experiments : JoVE",
-"JPMA. The Journal of the Pakistan Medical Association",
-"L' Orthodontie francaise",
-"Medecine sciences : M/S",
-"Special care in dentistry : official publication of the American Association of Hospital Dentists, the Academy of Dentistry for the Handicapped, and the American Society for Geriatric Dentistry",
-"Studies in health technology and informatics",
-"Technology and health care : official journal of the European Society for Engineering and Medicine",
-"The journal of contemporary dental practice",
-"The Journal of forensic odonto-stomatology",
-"Zhonghua kou qiang yi xue za zhi = Zhonghua kouqiang yixue zazhi = Chinese journal of stomatology"]
 
 alldata = []
 
