@@ -5,15 +5,26 @@ from docx import Document
 from docx.shared import Inches
 from docx.enum.section import WD_ORIENT
 from tqdm import tqdm
+from helper import *
 
 # Initialize OpenAI API key from environment variable
 client = OpenAI(
   api_key= os.getenv("OPENAI_API_KEY")
 )
-# Set GPT-Model
+
+# TODO:  
+Entrez.email = "mostafadesoki86@gmail.com"
+time_interval = '2024/10/15:2024/10/31'
+search_query = f"""((("Artificial Intelligence"[Mesh] OR "Artificial Intelligence"[tw] OR "Machine Learning"[tw] OR "Convolutional neural network*"[tw] OR "Deep Learning"[tw] AND ({time_interval}[pdat])) AND 
+                ("Dentistry"[Mesh] OR Dentistry[tw] OR Dental[tw] AND ({time_interval}[pdat])) NOT "systematic review"[Filter]) NOT "review"[Filter])"""
 gpt_model = "gpt-4o-mini"
+
+# Fetch the articles from PubMed database and export as Excel file
+articles = fetch_pubmed_data(search_query, max_records=100)
+pubmed_parser(articles)
+
 # Load the Excel file
-file_path = 'parser_output_15-31Octob.xlsx'
+file_path = 'parser_output.xlsx'
 df = pd.read_excel(file_path)
 
 # Define function to process each abstract with OpenAI API
@@ -60,11 +71,9 @@ def process_abstract(abstract):
         print(f"Error processing abstract: {e}")
         return None
 
-
-# Prepare data structure to store processed information
+# Loop through each row and process abstracts
 processed_data = []
 
-# Loop through each row and process abstracts with tqdm for progress tracking
 for index, row in tqdm(df.iterrows(), total=len(df)):
     title = row.get('Title', 'N/A')
     author = row.get('Author', 'N/A')
@@ -90,10 +99,8 @@ for index, row in tqdm(df.iterrows(), total=len(df)):
             'Conclusion': extracted_info.get("Conclusion", "N/A")
         })
 
-# Convert list to DataFrame for structured output
+# Convert list to DataFrame and save to Word document
 processed_df = pd.DataFrame(processed_data)
-
-# Create and save to Word document
 doc = Document()
 section = doc.sections[0]
 
@@ -125,10 +132,10 @@ for i, width in enumerate(column_widths):
     for row in table.rows:
         row.cells[i].width = width
 
-# Ensure the table fits the document
 table.autofit = False  # Disable auto fit to allow manual width setting
 
 # Save document
-output_path = f'Processed_Research_Papers_15-31_October_{gpt_model}.docx'
+time_interval_dashes = time_interval.replace("/", "-").replace(":", "-to-")
+output_path = f'DentalAIarticles_summary_{time_interval_dashes}_{gpt_model}.docx'
 doc.save(output_path)
 print(f"Document saved as {output_path}")
