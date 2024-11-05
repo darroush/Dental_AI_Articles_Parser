@@ -8,7 +8,7 @@ from helper import *
 Entrez.email = "mostafadesoki86@gmail.com"
 
 # TODO:  set time interval
-time_interval = '2024/09/01:2024/09/30'
+time_interval = '2024/10/15:2024/10/31'
 
 # TODO:  modify research query if needed
 search_query = f"""((("Artificial Intelligence"[Mesh] OR "Artificial Intelligence"[tw] OR "Machine Learning"[tw] OR "Convolutional neural network*"[tw] OR "Deep Learning"[tw] AND ({time_interval}[pdat])) AND 
@@ -64,7 +64,7 @@ for article in tqdm(articles):
 
 # save the data as excel file
 df = pd.DataFrame(alldata)
-df.to_excel(f'parser_output.xlsx', index=False)
+df.to_excel(f'parser_output_15-31Octob.xlsx', index=False)
 
 print('finished')
 
