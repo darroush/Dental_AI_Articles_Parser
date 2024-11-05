@@ -102,6 +102,6 @@ export OPENAI_API_KEY='your_openai_api_key'
 
 ## Contributers
 
-- [@darroush](https://github.com/username1)
+- [darroush](https://github.com/username1)
 
 ```
