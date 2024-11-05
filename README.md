@@ -1,4 +1,3 @@
-```markdown
 # Automated Dental AI Research Abstract Processor
 
 This project automates the retrieval, processing, and summarization of research abstracts related to AI in Dentistry. It pulls research papers from PubMed, processes each abstract using OpenAI’s GPT model to extract structured insights, and generates a Word document summarizing each paper. This is especially helpful for researchers looking to gather up-to-date information on AI applications in dentistry.
@@ -79,8 +78,8 @@ export OPENAI_API_KEY='your_openai_api_key'
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/automated-dental-ai-abstract-processor.git
-   cd automated-dental-ai-abstract-processor
+   git clone https://github.com/darroush/Dental_AI_Articles_Parser.git
+   cd Dental_AI_Articles_Parser
    ```
 
 2. **Customize Search Parameters**:
@@ -98,10 +97,14 @@ export OPENAI_API_KEY='your_openai_api_key'
 
 - **Adjust Date Range**: Modify the `time_interval` variable to retrieve articles for a specific date range.
 - **Change GPT Model**: Update the `gpt_model` variable in `process_research_papers.py` to use different OpenAI models.
-- **Add/Remove Columns**: Edit the `processed_data` dictionary in the main script to adjust columns in the output file.
+- **Edit the search query**: Edit the `search_query` variable in the main script.
 
 ## Contributers
 
 - [darroush](https://github.com/darroush)
+- [grey-neutral](https://github.com/grey-neutral)
+
+## License
+This project is licensed under the MIT License.
 
 ```
